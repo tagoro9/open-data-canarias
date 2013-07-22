@@ -1,0 +1,1 @@
+{"layer":"odc2013","hotspots":[{"id":"313","imageURL":"","anchor":{"geolocation":{"lat":28.482,"lon":-16.418}},"text":{"title":"CASA ALESSIO","description":"RESTAURANTE","footnote":"C\/. ISMAEL DOMINGUEZ, 153"}}],"errorCode":0,"errorString":"ok"}
