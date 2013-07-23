@@ -102,7 +102,9 @@
             foreach ( $rawPois as $rawPoi ) {
                 $poi = array();
                 $poi['id'] = $rawPoi['id'];
-                $poi['imageURL'] = 'http://open-data-canarias.herokuapp.com/img/'.strtolower($rawPoi['description']).'.png';
+                $url = 'http://open-data-canarias.herokuapp.com/img/'.strtolower($rawPoi['description']).'.png';
+                $poi['icon']['url'] = $url;
+                $poi['imageURL'] = $url;
                 // get anchor object information, note that changetoFloat is a custom function used to covert a string variable to float.
                 $poi['anchor']['geolocation']['lat'] = changetoFloat($rawPoi['lat']);
                 $poi['anchor']['geolocation']['lon'] = changetoFloat($rawPoi['lon']);
