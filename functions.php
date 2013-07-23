@@ -107,7 +107,7 @@
                 $poi['imageURL'] = $url;
                 $poi['object']['contentType'] = 'image/png';
                 $poi['object']['url'] = $url;
-                $poi['object']['size'] = 50;
+                $poi['object']['size'] = 250;
                 // get anchor object information, note that changetoFloat is a custom function used to covert a string variable to float.
                 $poi['anchor']['geolocation']['lat'] = changetoFloat($rawPoi['lat']);
                 $poi['anchor']['geolocation']['lon'] = changetoFloat($rawPoi['lon']);
