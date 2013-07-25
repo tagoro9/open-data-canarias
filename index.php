@@ -26,14 +26,20 @@
                         </div>
                         
                         <div class="header-description">
-                            <p>Las aplicaciones de <b>realidad aumentada</b> son cada vez más una parte importante de la experiencia que nos pueden ofrecer los teléfonos inteligentes. Utilizando el GPS o datos de redes móviles, la app localiza nuestra posición exacta y se superpone a la visión de la cámara.</p>
+                            <p>Las aplicaciones de <b>realidad aumentada</b> son una de las experiencias más importantes que nos pueden ofrecer los teléfonos inteligentes. Utilizando el GPS o datos de redes móviles, la app localiza nuestra posición exacta y se superpone a la visión de la cámara.</p>
                             <p><b>Open Data</b> es una filosofía que persigue que determinados datos estén disponibles de forma libre a todo el mundo, sin restricciones de copyright, patentes u otros mecanismos de control.</p>
                             <p>¿Por qué no relacionar estos conceptos entre sí? . Con objeto de participar en el <a href="http://fg.ull.es/opendatacanarias2013/">I Concurso Open Data Canarias</a>, hemos desarrollado dos capas de realidad aumentada para <a href="http://layar.com/">Layar</a> centrándonos en la Isla de Tenerife, permitiendo a los usuarios conocer la localización de las opciones de alojamiento y restauración más cercanas a ellos.</p>
                         </div>
                         
                         <div class="app-buttons">
-                            <a class="border-btn pull-left" href="#">Bares Tenerife</a>
-                            <a class="border-btn pull-right" href="#">Hoteles Tenerife</a>
+                            <a class="border-btn pull-left">
+                                <p>Restauración</p>
+                                <img src="img/rest.png">
+                            </a>
+                            <a class="border-btn pull-right">
+                                <p>Alojamiento</p>
+                                <img src="img/aloj.png">
+                            </a>
                         </div>
                     </div><!-- /span6 -->
                     
@@ -86,7 +92,7 @@
                 <div class="container">
                     <div class="row-fluid">
                         <div class="span12">
-                            <p class="pull-left"><a href="index.html">Augwesome Reality.</a> &copy; 2013 All Right Reserved.</p>
+                            <p class="pull-left">Augwesome Reality. &copy; 2013 All Right Reserved.</p>
                             <p class="pull-right">Any feedback is welcomed. | 
                             <a href="#aboutModal" role="button" data-toggle="modal">About</a>
                             </p>
