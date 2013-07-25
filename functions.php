@@ -41,7 +41,7 @@
     }
 
     //Obtener los puntos de la base de datos en funcion de la posicion del usuario y del radio de distancia indicado
-    function getHotspots( $db, $value ) {
+    function getHotspotsRestauracion( $db, $value ) {
         
         $sql = $db->prepare( "
         	SELECT *
@@ -105,9 +105,75 @@
                 $url = 'http://open-data-canarias.herokuapp.com/img/'.strtolower($rawPoi['description']).'.png';
                 $poi['icon']['url'] = $url;
                 $poi['imageURL'] = $url;
-                $poi['object']['contentType'] = 'image/png';
-                $poi['object']['url'] = $url;
-                $poi['object']['size'] = 250;
+                //$poi['object']['contentType'] = 'image/png';
+                //$poi['object']['url'] = $url;
+                //$poi['object']['size'] = 250;
+                // get anchor object information, note that changetoFloat is a custom function used to covert a string variable to float.
+                $poi['anchor']['geolocation']['lat'] = changetoFloat($rawPoi['lat']);
+                $poi['anchor']['geolocation']['lon'] = changetoFloat($rawPoi['lon']);
+                // get text object information
+                $poi['text']['title'] = $rawPoi['title'];
+                $poi['text']['description'] = $rawPoi['description'];
+                $poi['text']['footnote'] = $rawPoi['footnote'];
+                // Put the poi into the $hotspots array.
+                $hotspots[$i] = $poi;
+                $i++;
+            }//foreach
+        }//if
+        return $hotspots;
+    }//getHotspots    
+
+
+    //Obtener los puntos de la base de datos en funcion de la posicion del usuario y del radio de distancia indicado
+    function getHotspotsAlojamiento( $db, $value ) {
+        
+        $sql = $db->prepare( "
+                SELECT id,
+                Establecimiento as title,
+                Concat(Categoria,' ', EdificioSituacion) as description,
+                Categoria,
+                Concat(Direccion, ' ', Municipio) as footnote,
+                Coordenada_X as lat,
+                Coordenada_Y as lon,
+                (((acos(sin((:lat1 * pi() / 180)) * sin((Coordenada_X * pi() / 180)) +
+                        cos((:lat2 * pi() / 180)) * cos((Coordenada_X * pi() / 180)) *
+                        cos((:long  - Coordenada_Y) * pi() / 180))
+                   ) * 180 / pi()
+                  )* 60 * 1.1515 * 1.609344 * 1000
+                 ) as distance
+                FROM alojamientos
+                HAVING distance < :radius
+                ORDER BY distance ASC                       
+                            " );
+                            
+        // PDOStatement::bindParam() binds the named parameter markers to the
+        // specified parameter values.
+        $sql->bindParam( ':lat1', $value['lat'], PDO::PARAM_STR );
+        $sql->bindParam( ':lat2', $value['lat'], PDO::PARAM_STR );
+        $sql->bindParam( ':long', $value['lon'], PDO::PARAM_STR );
+        $sql->bindParam( ':radius', $value['radius'], PDO::PARAM_INT );
+        // Use PDO::execute() to execute the prepared statement $sql.
+        $sql->execute();
+        // Iterator for the response array.
+        $i = 0;
+        // Use fetchAll to return an array containing all of the remaining rows in
+        // the result set.
+        // Use PDO::FETCH_ASSOC to fetch $sql query results and return each row as an
+        // array indexed by column name.
+        $rawPois = $sql->fetchAll(PDO::FETCH_ASSOC);
+        /* Process the $rawPois result */
+        // if $rawPois array is not  empty
+        if ($rawPois) {
+        // Put each POI information into $hotspots array.
+            foreach ( $rawPois as $rawPoi ) {
+                $poi = array();
+                $poi['id'] = $rawPoi['id'];
+                $url = 'http://open-data-canarias.herokuapp.com/img/'.strtolower($rawPoi['Categoria']).'.png';
+                $poi['icon']['url'] = $url;
+                $poi['imageURL'] = $url;
+                //$poi['object']['contentType'] = 'image/png';
+                //$poi['object']['url'] = $url;
+                //$poi['object']['size'] = 250;
                 // get anchor object information, note that changetoFloat is a custom function used to covert a string variable to float.
                 $poi['anchor']['geolocation']['lat'] = changetoFloat($rawPoi['lat']);
                 $poi['anchor']['geolocation']['lon'] = changetoFloat($rawPoi['lon']);
