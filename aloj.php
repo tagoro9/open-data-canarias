@@ -23,6 +23,7 @@
                         
     //Si no hay puntos devolver un codigo de error 20
     if (!$response['hotspots']) {
+        $response['hotspots'] = [];
         $response['errorCode'] = 20;
         $response['errorString'] = "No POI found. Please adjust the range.";
     }
