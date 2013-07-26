@@ -102,7 +102,7 @@
             foreach ( $rawPois as $rawPoi ) {
                 $poi = array();
                 $poi['id'] = $rawPoi['id'];
-                $url = 'http://augwesome-reality.herokuapp.com/img/'.strtolower($rawPoi['description']).'.png';
+                $url = 'http://augwesome-reality.herokuapp.com/img/'.strtolower(str_replace(' ', '', $rawPoi['description'])).'.png';
                 $poi['icon']['url'] = $url;
                 $poi['imageURL'] = $url;
                 //$poi['object']['contentType'] = 'image/png';
@@ -168,7 +168,7 @@
             foreach ( $rawPois as $rawPoi ) {
                 $poi = array();
                 $poi['id'] = $rawPoi['id'];
-                $url = 'http://augwesome-reality.herokuapp.com/img/'.strtolower($rawPoi['Categoria']).'.png';
+                $url = 'http://augwesome-reality.herokuapp.com/img/'.strtolower(str_replace(' ','', $rawPoi['Categoria'])).'.png';
                 $poi['icon']['url'] = $url;
                 $poi['imageURL'] = $url;
                 //$poi['object']['contentType'] = 'image/png';
