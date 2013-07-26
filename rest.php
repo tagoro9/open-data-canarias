@@ -18,6 +18,8 @@
     $response['layer'] = $requestParams['layerName'];
     // Usar getHotspots para obtener los puntos desde la base de datos
     $response['hotspots'] = getHotspotsRestauracion( $db, $requestParams );
+    $response['showDialog']['title'] = "Augwesome Reality";
+    $response['showDialog']['description'] = "I Concurso Open Data Canarias";
                         
     //Si no hay puntos devolver un codigo de error 20
     if (!$response['hotspots']) {
